@@ -40,3 +40,4 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'cancancan', '~> 1.9'
+gem 'state_machine'
