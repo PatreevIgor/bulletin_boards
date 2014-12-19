@@ -3,6 +3,11 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
   # GET /articles
   # GET /articles.json
+
+  def published
+    @articles = Article.all.where(state: ['published','in_the_archive'])
+  end
+
   def index
     @articles = Article.all
   end
