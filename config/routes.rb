@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :articles  do
-    collection { post :search, to: 'articles#published' }
+    collection do
+      get 'search'
+    end
   end
   root to: 'articles#published'
   get '/published', to: 'articles#published'

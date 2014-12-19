@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 
   def published
     @search = Article.search(params[:q])
-    @articles = @search.result.where(state: ['published','in_the_archive'])
+    @articles = @search.result.where(state: ['published','in_the_archive']).page(params[:page]).per(3)
     @search.build_condition if @search.conditions.empty?
     @search.build_sort if @search.sorts.empty?
   end
