@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
+    record_the_current_user_in_the_name_field
   end
 
   # PATCH/PUT /articles/1
@@ -70,5 +71,12 @@ class ArticlesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title, :description, :image, :price, :category, :state, :creater)
+    end
+
+    def record_the_current_user_in_the_name_field
+      if @article.save
+        @article.creater = current_user.name
+        @article.save
+      end
     end
 end
