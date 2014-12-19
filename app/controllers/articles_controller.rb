@@ -1,11 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   # GET /articles
   # GET /articles.json
 
   def published
-    @articles = Article.all.where(state: ['published','in_the_archive'])
+    @articles = Article.where(state: ['published','in_the_archive'])
+  end
+
+  def not_published
+    @articles = Article.where(state: ['pending_publication','rejected'])
   end
 
   def index
@@ -41,6 +45,7 @@ class ArticlesController < ApplicationController
       end
     end
     record_the_current_user_in_the_name_field
+    new_state_when_creating
   end
 
   # PATCH/PUT /articles/1
@@ -81,6 +86,13 @@ class ArticlesController < ApplicationController
     def record_the_current_user_in_the_name_field
       if @article.save
         @article.creater = current_user.name
+        @article.save
+      end
+    end
+
+    def new_state_when_creating
+      if @article.save
+        @article.state = "pending_publication"
         @article.save
       end
     end

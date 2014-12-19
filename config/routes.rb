@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :articles
   root to: 'articles#published'
+  get '/published', to: 'articles#published'
+  get '/not_published', to: 'articles#not_published'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

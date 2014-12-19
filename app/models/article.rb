@@ -1,11 +1,11 @@
 class Article < ActiveRecord::Base
-	state_machine :state, :initial => :new do
+	state_machine :state, :initial => :pending_publication do
 	  event :select_state_published do
-	    transition [:new, :pending_publication, :rejected, :archive] => :published
+	    transition [:pending_publication, :rejected, :archive] => :published
 	  end
 
 	  event :select_state_rejected do
-	    transition [:new, :pending_publication, :published, :archive] => :rejected
+	    transition [:pending_publication, :published, :archive] => :rejected
 	  end
 	end
 
