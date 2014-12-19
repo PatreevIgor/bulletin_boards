@@ -5,7 +5,10 @@ class ArticlesController < ApplicationController
   # GET /articles.json
 
   def published
-    @articles = Article.where(state: ['published','in_the_archive'])
+    @search = Article.search(params[:q])
+    @articles = @search.result.where(state: ['published','in_the_archive'])
+    @search.build_condition if @search.conditions.empty?
+    @search.build_sort if @search.sorts.empty?
   end
 
   def not_published
