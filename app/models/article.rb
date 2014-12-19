@@ -9,24 +9,24 @@ class Article < ActiveRecord::Base
 	  end
 	end
 
-	state_machine :type, :initial => :default do
-	  event :select_type_sale do
+	state_machine :category, :initial => :default do
+	  event :select_category_sale do
 	    transition [:default, :purchase, :currency, :service, :rent] => :sale
 	  end
 
-	  event :select_type_purchase do
+	  event :select_category_purchase do
 	    transition [:default, :sale, :currency, :service, :rent] => :purchase
 	  end
 
-	  event :select_type_currency do
+	  event :select_category_currency do
 	    transition [:default, :sale, :purchase, :service, :rent] => :currency
 	  end
 
-	  event :select_type_service do
+	  event :select_category_service do
 	    transition [:default, :sale, :purchase, :currency, :rent] => :service
 	  end
 
-	  event :select_type_rent do
+	  event :select_category_rent do
 	    transition [:default, :sale, :purchase, :currency, :service] => :rent
 	  end
 

@@ -19,7 +19,7 @@
       <tr>
         <td><%= article.title %></td>
         <td><%= article.description %></td>
-        <td><%= article.image %></td>
+        <td><%= image_tag article.image, :width => 100, :height => 100 %></td>
         <td><%= article.price %></td>
         <td><%= article.category %></td>
         <td><%= article.state %></td>
