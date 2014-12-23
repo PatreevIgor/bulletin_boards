@@ -1,0 +1,24 @@
+p
+  strong Title:
+  = @article.title
+p
+  strong Description:
+  = @article.description
+p
+  strong Image:
+  = @article.image
+p
+  strong Price:
+  = @article.price
+p
+  strong Category:
+  = @article.category
+p
+  strong State:
+  = @article.state
+p
+  strong Creater:
+  = @article.creater
+p
+=' link_to 'Edit', edit_article_path(@article)
+= link_to 'Back', published_path 
