@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   root to: 'articles#published'
   get '/published', to: 'articles#published'
+  get '/all_users', to: 'articles#all_users'
   get '/not_published', to: 'articles#not_published'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

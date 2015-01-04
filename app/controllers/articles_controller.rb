@@ -15,6 +15,10 @@ class ArticlesController < ApplicationController
     @articles = Article.where(state: ['pending_publication','rejected'])
   end
 
+  def all_users
+    @users = User.all
+  end
+
   def index
     @articles = Article.all
   end

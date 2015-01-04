@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+	<p>
+	<%= user.name %>
+	<%= user.email %>
+<% end %>
+<p>
+<%= link_to 'Back', published_path %>
