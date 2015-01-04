@@ -1,0 +1,13 @@
+p#notice = notice
+
+p
+  strong Body:
+  = @comment.body
+p
+  strong Article:
+  = @comment.article_id
+p
+
+= link_to 'Edit', edit_comment_path(@comment)
+'|
+= link_to 'Back', published_path

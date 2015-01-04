@@ -23,9 +23,13 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
+  def main_articles
+    @articles = Article.where(creater: current_user.name)
+  end
   # GET /articles/1
   # GET /articles/1.json
   def show
+    find_comment_for_current_article
   end
 
   # GET /articles/new
@@ -102,5 +106,20 @@ class ArticlesController < ApplicationController
         @article.state = "pending_publication"
         @article.save
       end
+    end
+    def find_comment_for_current_article
+      @massiv_id_articles_for_comments = []
+      Comment.all.each do |comment|
+        @massiv_id_articles_for_comments << comment.article_id
+      end
+
+      if @massiv_id_articles_for_comments.include?(@article.id)
+        @comment = Comment.where(article_id: @article.id).first
+      else
+        @comment = Comment.new
+        @comment.article_id = @article.id
+        @comment.save
+      end
+      @main_comment = Comment.where(article_id: @article.id).first.body
     end
 end

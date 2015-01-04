@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
@@ -30,10 +28,19 @@
   <%= @article.state %>
 </p>
 
-<p>
-  <strong>Creater:</strong>
-  <%= @article.creater %>
-</p>
+<% if @article.state == 'rejected'%>
+  <p>
+  <strong>The_reason_for_the_refusal_to_publish:</strong>
+    <%= @main_comment %>
+  </p>
+<% if user_signed_in? %>
+    <% if can? :update, @comment %>
+        <h1>New comment</h1>
+        <%= render 'comments/form' %>
+        <%= link_to 'Back', comments_path %>
+    <% end %>
+<% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', published_path %>

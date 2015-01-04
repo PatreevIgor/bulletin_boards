@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+
   devise_for :users
   resources :articles  do
     collection do
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   get '/published', to: 'articles#published'
   get '/all_users', to: 'articles#all_users'
   get '/not_published', to: 'articles#not_published'
+  get '/main_articles', to: 'articles#main_articles'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

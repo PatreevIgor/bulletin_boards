@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+	has_one :comment, dependent: :destroy
 	
 	state_machine :state, :initial => :pending_publication do
 	  event :select_state_published do

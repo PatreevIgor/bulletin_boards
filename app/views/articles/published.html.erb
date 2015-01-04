@@ -13,6 +13,8 @@
 <% end %>
 
 <%= paginate @articles %>
+<p>
+<%= link_to 'Main_articles', main_articles_path %>
 <% if user_signed_in? %>
   <% if can? :update, @article %>
     <%= link_to 'Pending_publication_articles', not_published_path %>
@@ -33,6 +35,7 @@
       <th>Price</th>
       <th>Category</th>
       <th>State</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
