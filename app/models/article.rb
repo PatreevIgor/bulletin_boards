@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+	
 	state_machine :state, :initial => :pending_publication do
 	  event :select_state_published do
 	    transition [:pending_publication, :rejected, :archive] => :published
@@ -34,6 +35,7 @@ class Article < ActiveRecord::Base
 	    transition [:default, :sale, :purchase, :currency, :service] => :rent
 	  end
 	end
+
 	def translation_status_if_the_time_is_greater_than_1_day
 		Article.all.where(state: 'published').each do |article|
 			if ((Time.now - article.updated_at)/60).round >= 4
