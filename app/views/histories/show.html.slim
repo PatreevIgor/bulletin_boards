@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong User name:
+  = @history.user_name
+p
+  strong Action:
+  = @history.action
+p
+  strong Object:
+  = @history.object
+p
+  strong Time:
+  = @history.time
+
+= link_to 'Edit', edit_history_path(@history)
+'|
+= link_to 'Back', histories_path

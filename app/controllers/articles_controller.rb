@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   # before_action :authenticate_user!
   # GET /articles
   # GET /articles.json
+  include Record_history
 
   def published
     @search = Article.search(params[:q])
@@ -30,6 +31,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     find_comment_for_current_article
+    record_history_show
   end
 
   # GET /articles/new
@@ -39,6 +41,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    record_history_edit
   end
 
   # POST /articles
@@ -57,6 +60,7 @@ class ArticlesController < ApplicationController
     end
     record_the_current_user_in_the_name_field
     new_state_when_creating
+    record_history_create
   end
 
   # PATCH/PUT /articles/1

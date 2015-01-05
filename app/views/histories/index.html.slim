@@ -1,0 +1,29 @@
+h1 Listing histories
+
+table
+  thead
+    tr
+      th User name
+      th Action
+      th Object
+      th Time
+      /th
+      /th
+      /th
+
+  tbody
+    - @histories.each do |history|
+      tr
+        td = history.user_name
+        td = history.action
+        td = history.object
+        td = history.time
+        /td = link_to 'Show', history
+        /td = link_to 'Edit', edit_history_path(history)
+        /td = link_to 'Destroy', history, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+/=' link_to 'New History', new_history_path
+p
+= link_to 'Back', published_path
